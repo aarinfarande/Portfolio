@@ -1,0 +1,2922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakfast Boost — Morning Made Better</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      --purple: #4B0BA8;
+      --deep-purple: #28005F;
+      --lavender: #C9A7FF;
+      --bright-cyan: #55C7F2;
+      --light-blue: #AEE8FF;
+      --warm-yellow: #FFF27A;
+      --cream: #FFF1C9;
+      --orange: #FF9348;
+      --pink-lilac: #E4B7FF;
+      --dark: #120018;
+      --white: #FFFFFF;
+      --orange-dark: #e67e3a;
+      --cream-mid: #ffe4b5;
+      --light-blue-deep: #d4f0ff;
+      --cyan-deep: #3db8e8;
+      --blue-bright: #2a8fd4;
+      --gray-light: #f0f0f0;
+      --gray-border: #f0f0f0;
+      --green-check: #22c55e;
+      --red-cross: #ef4444;
+      --yellow-green: #c8f0c8;
+      --gray-mid: #888888;
+
+      --font-display: 'Fredoka', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --radius-xl: 48px;
+      --radius-full: 9999px;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: var(--font-body);
+      border: none;
+      cursor: pointer;
+      background: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* ============================================
+       UTILITIES
+       ============================================ */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .display-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .section-heading {
+      font-family: var(--font-retro);
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.035em;
+      position: relative;
+      width: fit-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow:
+        2px 2px 0 rgba(255, 43, 214, 0.65),
+        -2px -2px 0 rgba(0, 229, 255, 0.45),
+        0 0 10px rgba(255,255,255,0.12);
+      transition: transform .28s ease, text-shadow .28s ease, letter-spacing .28s ease;
+    }
+
+    .section-heading::before {
+      content: '//';
+      font-family: var(--font-mono);
+      font-size: .42em;
+      position: absolute;
+      left: -1.6em;
+      top: .15em;
+      opacity: .65;
+    }
+
+    .section-heading:hover {
+      transform: translateY(-4px) skewX(-2deg);
+      letter-spacing: 0.07em;
+      text-shadow:
+        3px 3px 0 rgba(255, 43, 214, 0.9),
+        -3px -3px 0 rgba(0, 229, 255, 0.9),
+        0 0 10px rgba(255,43,214,.55),
+        0 0 28px rgba(0,229,255,.35);
+    }
+
+    .display-heading {
+      position: relative;
+      transition: transform .28s ease, text-shadow .28s ease, filter .28s ease;
+    }
+
+    .display-heading:hover {
+      transform: translateY(-4px) skewX(-2deg);
+      filter: saturate(1.25);
+      text-shadow:
+        3px 3px 0 rgba(255,43,214,.85),
+        -3px -3px 0 rgba(0,229,255,.8),
+        0 0 12px rgba(255,43,214,.45),
+        0 0 30px rgba(0,229,255,.3);
+    }
+
+    .label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--font-retro);
+      font-weight: 900;
+      letter-spacing: .025em;
+      text-shadow:
+        3px 3px 0 rgba(255,43,214,.45),
+        -3px -3px 0 rgba(0,229,255,.35);
+    }
+
+    .benefit-title,
+    .flavor-name,
+    .cooking-col-title,
+    .cooking-step-text h4,
+    .review-title,
+    .comparison-table th,
+    .comparison-card-title,
+    .footer-links-title,
+    .footer-newsletter-title {
+      font-family: var(--font-retro);
+      transition: transform .25s ease, text-shadow .25s ease, color .25s ease;
+    }
+
+    .benefit-title:hover,
+    .flavor-name:hover,
+    .cooking-col-title:hover,
+    .cooking-step-text h4:hover,
+    .review-title:hover,
+    .comparison-table th:hover,
+    .comparison-card-title:hover,
+    .footer-links-title:hover,
+    .footer-newsletter-title:hover {
+      transform: translateY(-2px) skewX(-2deg);
+      text-shadow:
+        2px 2px 0 rgba(255,43,214,.7),
+        -2px -2px 0 rgba(0,229,255,.6),
+        0 0 12px rgba(255,43,214,.25);
+    }
+
+    .retro-label {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .65rem;
+    }
+
+    /* ============================================
+       BUTTONS
+       ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(75, 11, 168, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--deep-purple);
+      box-shadow: 0 6px 24px rgba(75, 11, 168, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--purple);
+      border: 2px solid var(--purple);
+    }
+
+    .btn-secondary:hover {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .btn-orange {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(255, 147, 72, 0.3);
+    }
+
+    .btn-orange:hover {
+      background: var(--orange-dark);
+      box-shadow: 0 6px 24px rgba(255, 147, 72, 0.4);
+    }
+
+    /* ============================================
+       ANNOUNCEMENT BAR
+       ============================================ */
+    .announcement-bar {
+      background: var(--purple);
+      color: var(--white);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================
+       NAVBAR
+       ============================================ */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(75, 11, 168, 0.08);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--purple);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--purple);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--purple);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--purple);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 320px;
+      height: 100vh;
+      background: var(--white);
+      z-index: 1001;
+      padding: 80px 32px 32px;
+      transition: right 0.35s ease;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+    }
+
+    .mobile-nav.open {
+      right: 0;
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-nav-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--purple);
+      border-bottom: 1px solid rgba(75, 11, 168, 0.1);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 45%, var(--cream-mid) 75%, var(--orange) 100%);
+      padding: 60px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-blob-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--warm-yellow);
+      top: -100px;
+      right: -100px;
+    }
+
+    .hero-blob-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--pink-lilac);
+      bottom: 10%;
+      left: -80px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--purple);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      color: var(--deep-purple);
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--deep-purple);
+      opacity: 0.85;
+      max-width: 480px;
+      margin-bottom: 24px;
+    }
+
+    .hero-benefits {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .hero-benefit {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--deep-purple);
+    }
+
+    .hero-benefit svg {
+      width: 18px;
+      height: 18px;
+      color: var(--purple);
+    }
+
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .hero-stars svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--orange);
+      color: var(--orange);
+    }
+
+    .hero-rating-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--deep-purple);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image-area {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-main-image {
+      width: 90%;
+      max-width: 480px;
+      position: relative;
+      z-index: 2;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-float-badge {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius-full);
+      padding: 10px 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--purple);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 3;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero-float-badge.b1 { top: 10%; left: 0; animation-delay: 0s; }
+    .hero-float-badge.b2 { top: 5%; right: 5%; animation-delay: 1s; background: var(--warm-yellow); }
+    .hero-float-badge.b3 { bottom: 20%; left: -5%; animation-delay: 2s; background: var(--bright-cyan); color: var(--white); }
+
+    .hero-mini-products {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      display: flex;
+      gap: 0;
+      z-index: 3;
+    }
+
+    .hero-mini-product {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-full);
+      border: 3px solid var(--white);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      object-fit: cover;
+      margin-left: -20px;
+    }
+
+    .hero-info-bar {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(75, 11, 168, 0.12);
+      flex-wrap: wrap;
+    }
+
+    .hero-info-item {
+      text-align: center;
+    }
+
+    .hero-info-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 4px;
+    }
+
+    .hero-info-value {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--deep-purple);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* ============================================
+       BENEFITS SECTION
+       ============================================ */
+    .benefits {
+      background: linear-gradient(135deg, var(--bright-cyan) 0%, var(--light-blue) 100%);
+      padding: 100px 0;
+    }
+
+    .benefits-heading {
+      color: var(--white);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+    }
+
+    .benefits-subtitle {
+      text-align: center;
+      color: var(--white);
+      opacity: 0.9;
+      font-size: 1.05rem;
+      margin-bottom: 56px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+
+    .benefit-card:hover .benefit-image {
+      transform: scale(1.08);
+    }
+
+    .benefit-image-wrap {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      border: 4px solid var(--light-blue);
+    }
+
+    .benefit-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .benefit-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .benefit-desc {
+      font-size: 0.85rem;
+      color: var(--dark);
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       COOKING INSTRUCTIONS
+       ============================================ */
+    .cooking {
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--pink-lilac) 100%);
+      padding: 100px 0;
+    }
+
+    .cooking-heading {
+      color: var(--deep-purple);
+      margin-bottom: 56px;
+    }
+
+    .cooking-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .cooking-col {
+      text-align: center;
+    }
+
+    .cooking-col-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+
+    .cooking-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .cooking-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .cooking-step-num {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      background: var(--purple);
+      color: var(--white);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .cooking-step-text h4 {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--deep-purple);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .cooking-step-text p {
+      font-size: 0.85rem;
+      color: var(--deep-purple);
+      opacity: 0.8;
+    }
+
+    .cooking-center-image {
+      width: 260px;
+      height: 260px;
+      border-radius: var(--radius-full);
+      border: 6px solid var(--white);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      object-fit: cover;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    /* ============================================
+       INGREDIENTS SECTION
+       ============================================ */
+    .ingredients {
+      background: linear-gradient(180deg, var(--light-blue) 0%, var(--light-blue-deep) 100%);
+      padding: 100px 0;
+    }
+
+    .ingredients-heading {
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .ingredients-subtitle {
+      text-align: center;
+      color: var(--deep-purple);
+      opacity: 0.8;
+      font-size: 1.05rem;
+      margin-bottom: 56px;
+    }
+
+    .ingredients-diagram {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ingredients-center {
+      position: relative;
+      z-index: 2;
+    }
+
+    .ingredients-center-image {
+      width: 280px;
+      height: 280px;
+      border-radius: var(--radius-full);
+      border: 6px solid var(--white);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      object-fit: cover;
+    }
+
+    .ingredient-node {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .ingredient-node-image {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-full);
+      border: 3px solid var(--white);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    .ingredient-node-label {
+      background: var(--purple);
+      color: var(--white);
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .node-top { top: 0; left: 50%; transform: translateX(-50%); }
+    .node-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .node-left { left: 0; top: 50%; transform: translateY(-50%); }
+    .node-right { right: 0; top: 50%; transform: translateY(-50%); }
+    .node-tl { top: 15%; left: 8%; }
+    .node-tr { top: 15%; right: 8%; }
+    .node-bl { bottom: 15%; left: 8%; }
+    .node-br { bottom: 15%; right: 8%; }
+
+    .connector-line {
+      position: absolute;
+      background: var(--purple);
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    /* ============================================
+       FLAVORS SECTION
+       ============================================ */
+    .flavors {
+      background: linear-gradient(135deg, var(--bright-cyan) 0%, var(--cyan-deep) 100%);
+      padding: 100px 0;
+    }
+
+    .flavors-heading {
+      color: var(--white);
+      margin-bottom: 56px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .flavors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .flavor-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px 28px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flavor-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.15);
+    }
+
+    .flavor-card:hover .flavor-image {
+      transform: translateY(-8px);
+    }
+
+    .flavor-image {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px;
+      border-radius: var(--radius-full);
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      border: 4px solid var(--light-blue);
+    }
+
+    .flavor-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .flavor-desc {
+      font-size: 0.85rem;
+      color: var(--dark);
+      opacity: 0.75;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .flavor-cta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--purple);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .flavor-card:hover .flavor-cta {
+      color: var(--orange);
+    }
+
+    /* ============================================
+       COMPARISON SECTION
+       ============================================ */
+    .comparison {
+      background: linear-gradient(135deg, var(--blue-bright) 0%, var(--bright-cyan) 100%);
+      padding: 100px 0;
+    }
+
+    .comparison-heading {
+      color: var(--white);
+      margin-bottom: 8px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .comparison-subtitle {
+      text-align: center;
+      color: var(--white);
+      opacity: 0.9;
+      font-size: 1.05rem;
+      margin-bottom: 48px;
+    }
+
+    .comparison-table-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      max-width: 700px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .comparison-table th.brand-col {
+      background: var(--purple);
+      color: var(--white);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .comparison-table th.other-col {
+      background: var(--gray-light);
+      color: var(--dark);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .comparison-table td {
+      padding: 16px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .comparison-table td.row-label {
+      text-align: left;
+      font-weight: 600;
+      color: var(--deep-purple);
+    }
+
+    .comparison-table td.brand-cell {
+      background: rgba(75, 11, 168, 0.06);
+      font-weight: 600;
+      color: var(--purple);
+    }
+
+    .check-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--green-check);
+      display: inline-block;
+    }
+
+    .cross-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--red-cross);
+      display: inline-block;
+    }
+
+    .comparison-cards {
+      display: none;
+    }
+
+    /* ============================================
+       SUBSCRIPTION CTA
+       ============================================ */
+    .subscribe {
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--pink-lilac) 100%);
+      padding: 0;
+    }
+
+    .subscribe-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 500px;
+    }
+
+    .subscribe-image-area {
+      position: relative;
+      height: 100%;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .subscribe-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subscribe-image-decor {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 60%, var(--lavender) 100%);
+      pointer-events: none;
+    }
+
+    .subscribe-content {
+      padding: 60px 48px;
+    }
+
+    .subscribe-heading {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--deep-purple);
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .subscribe-desc {
+      color: var(--deep-purple);
+      opacity: 0.85;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+
+    .subscribe-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .subscribe-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--deep-purple);
+    }
+
+    .subscribe-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       REVIEWS SECTION
+       ============================================ */
+    .reviews {
+      background: linear-gradient(180deg, var(--warm-yellow) 0%, var(--yellow-green) 100%);
+      padding: 100px 0;
+    }
+
+    .reviews-heading {
+      color: var(--deep-purple);
+      margin-bottom: 8px;
+    }
+
+    .reviews-rating {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .reviews-rating-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--deep-purple);
+    }
+
+    .reviews-rating-stars {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .reviews-rating-stars svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--orange);
+      color: var(--orange);
+    }
+
+    .reviews-carousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.5s ease;
+    }
+
+    .review-card {
+      min-width: calc(33.333% - 16px);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 12px;
+    }
+
+    .review-stars svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--orange);
+      color: var(--orange);
+    }
+
+    .review-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--deep-purple);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .review-text {
+      font-size: 0.85rem;
+      color: var(--dark);
+      opacity: 0.8;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .review-author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--purple);
+    }
+
+    .review-flavor {
+      font-size: 0.7rem;
+      color: var(--dark);
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .hidden-review { display: none; }
+
+    .reviews-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .reviews-nav button {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: var(--white);
+      border: 2px solid var(--purple);
+      color: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .reviews-nav button:hover {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    .reviews-nav button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .reviews-read-more {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    /* ============================================
+       FAQ SECTION
+       ============================================ */
+    .faq {
+      background: linear-gradient(135deg, var(--deep-purple) 0%, var(--purple) 100%);
+      padding: 100px 0;
+    }
+
+    .faq-heading {
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+
+    .faq-item:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .faq-question:hover {
+      color: var(--warm-yellow);
+    }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 20px;
+    }
+
+    .faq-answer p {
+      color: var(--white);
+      opacity: 0.85;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 64px 0 24px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {
+      max-width: 280px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--purple);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    .footer-links-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--warm-yellow);
+    }
+
+    .footer-newsletter {
+      max-width: 320px;
+    }
+
+    .footer-newsletter-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-newsletter-desc {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .footer-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .footer-input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-input:focus {
+      border-color: var(--warm-yellow);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .footer-submit {
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      background: var(--purple);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .footer-submit:hover {
+      background: var(--lavender);
+      color: var(--deep-purple);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-social {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .footer-social:hover {
+      background: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copyright {
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-legal a:hover {
+      opacity: 0.9;
+    }
+
+    /* ============================================
+       FRONTEND PRODUCT MODAL + TOAST
+       ============================================ */
+    .product-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(18,0,24,.72);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .product-modal.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .product-modal-card {
+      width: min(520px, 100%);
+      background: linear-gradient(145deg, #fff, #f4eaff);
+      border: 2px solid rgba(255,43,214,.45);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.35), 0 0 40px rgba(0,229,255,.18);
+      transform: translateY(20px) scale(.97);
+      transition: transform .25s ease;
+      position: relative;
+    }
+
+    .product-modal.open .product-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .product-modal-close {
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--deep-purple);
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .product-modal h3 {
+      font-family: var(--font-retro);
+      color: var(--deep-purple);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 0 rgba(255,43,214,.35);
+    }
+
+    .product-modal p {
+      color: var(--deep-purple);
+      opacity: .78;
+      margin-bottom: 20px;
+    }
+
+    .product-modal-price {
+      font-family: var(--font-retro);
+      color: var(--purple);
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+
+    .quantity-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .quantity-row button {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--purple);
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .quantity-row span {
+      min-width: 30px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 4000;
+      transform: translate(-50%, 120px);
+      background: var(--dark);
+      color: white;
+      border: 1px solid rgba(0,229,255,.5);
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      box-shadow: 0 0 25px rgba(0,229,255,.22);
+      opacity: 0;
+      transition: transform .3s ease, opacity .3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .cart-count {
+      display: inline-flex;
+      min-width: 20px;
+      height: 20px;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+      padding: 0 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      font-size: .65rem;
+      vertical-align: middle;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-desc {
+        margin: 0 auto 24px;
+      }
+
+      .hero-benefits {
+        justify-content: center;
+      }
+
+      .hero-rating {
+        justify-content: center;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .hero-image-area {
+        order: -1;
+      }
+
+      .hero-main-image {
+        max-width: 360px;
+      }
+
+      .hero-info-bar {
+        justify-content: center;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cooking-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .cooking-center-image {
+        order: -1;
+        margin: 0 auto;
+      }
+
+      .flavors-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .subscribe-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .subscribe-image-area {
+        min-height: 280px;
+      }
+
+      .subscribe-image-decor {
+        background: linear-gradient(180deg, transparent 60%, var(--lavender) 100%);
+      }
+
+      .subscribe-content {
+        padding: 40px 24px;
+      }
+
+      .review-card {
+        min-width: calc(50% - 12px);
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-newsletter {
+        grid-column: 1 / -1;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .navbar .btn {
+        display: none;
+      }
+
+      .hero {
+        padding: 40px 0 60px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 10vw, 3.5rem);
+      }
+
+      .hero-float-badge {
+        display: none;
+      }
+
+      .hero-mini-products {
+        display: none;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .benefit-card {
+        padding: 24px 16px;
+      }
+
+      .flavors-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .comparison-table-wrap {
+        display: none;
+      }
+
+      .comparison-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .comparison-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+      }
+
+      .comparison-card-title {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+
+      .comparison-card-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--gray-border);
+        font-size: 0.85rem;
+      }
+
+      .comparison-card-row:last-child {
+        border-bottom: none;
+      }
+
+      .review-card {
+        min-width: 85%;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .ingredients-diagram {
+        min-height: auto;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .ingredient-node {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        flex-direction: row;
+        gap: 12px;
+      }
+
+      .connector-line {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+      }
+
+      .section-heading {
+        font-size: clamp(1.6rem, 8vw, 2.5rem);
+      }
+
+      .cooking-step {
+        gap: 12px;
+      }
+
+      .cooking-step-num {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .fade-up {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    Free shipping on orders over $35 • Subscribe & Save 15%
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="#hero" class="logo">
+        <span class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        </span>
+        Breakfast Boost
+      </a>
+      <div class="nav-links">
+        <a href="#flavors" class="nav-link">Shop</a>
+        <a href="#ingredients" class="nav-link">Our Story</a>
+        <a href="#ingredients" class="nav-link">Ingredients</a>
+        <a href="#cooking" class="nav-link">Recipes</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+      </div>
+      <a href="#flavors" class="btn btn-primary" data-shop>Shop Now <span class="cart-count" id="cartCount">0</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#flavors">Shop</a>
+    <a href="#ingredients">Our Story</a>
+    <a href="#ingredients">Ingredients</a>
+    <a href="#cooking">Recipes</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#flavors" class="btn btn-primary" style="margin-top:16px;width:100%;" data-shop>Shop Now</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero section" id="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content fade-up">
+          <div class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--orange)" stroke="var(--orange)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Best Seller — Over 50,000 Happy Bowls
+          </div>
+          <h1 class="display-heading hero-title">Maple Brown<br>Sugar</h1>
+          <p class="hero-desc">A warm, cozy bowl of goodness with 20g protein and zero compromise. The breakfast you actually look forward to.</p>
+          <div class="hero-benefits">
+            <div class="hero-benefit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              20g Protein
+            </div>
+            <div class="hero-benefit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              High Fiber
+            </div>
+            <div class="hero-benefit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Low Sugar
+            </div>
+          </div>
+          <div class="hero-rating">
+            <div class="hero-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="hero-rating-text">4.8 from 2,400+ reviews</span>
+          </div>
+          <div class="hero-ctas">
+            <a href="#flavors" class="btn btn-primary">Shop Maple Brown Sugar</a>
+            <a href="#flavors" class="btn btn-secondary">See All Flavors</a>
+          </div>
+        </div>
+        <div class="hero-image-area fade-up">
+          <img src="https://images.pexels.com/photos/13950819/pexels-photo-13950819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Warm oatmeal bowl topped with maple drizzle, brown sugar crystals, and sliced bananas in a white ceramic bowl, overhead shot on a rustic wood table, soft morning light" width="600" height="600" class="hero-main-image">
+          <div class="hero-float-badge b1">20g Protein</div>
+          <div class="hero-float-badge b2">New!</div>
+          <div class="hero-float-badge b3">Gluten Free</div>
+          <div class="hero-mini-products">
+            <img src="https://images.pexels.com/photos/13950819/pexels-photo-13950819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Small apple cinnamon oatmeal pouch package, product cutout on white background" width="70" height="70" class="hero-mini-product">
+            <img src="https://images.pexels.com/photos/10668576/pexels-photo-10668576.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Small banana bread oatmeal pouch package, product cutout on white background" width="70" height="70" class="hero-mini-product">
+          </div>
+        </div>
+      </div>
+      <div class="hero-info-bar fade-up">
+        <div class="hero-info-item">
+          <div class="hero-info-label">Flavor</div>
+          <div class="hero-info-value">Maple Brown Sugar</div>
+        </div>
+        <div class="hero-info-item">
+          <div class="hero-info-label">Servings</div>
+          <div class="hero-info-value">12 per box</div>
+        </div>
+        <div class="hero-info-item">
+          <div class="hero-info-label">Rating</div>
+          <div class="hero-info-value">4.8 <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="display:inline;vertical-align:-1px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        </div>
+        <div class="hero-info-item">
+          <div class="hero-info-label">Price</div>
+          <div class="hero-info-value">$29.99</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits section" id="benefits">
+    <div class="container">
+      <h2 class="section-heading benefits-heading fade-up">Breakfast With Benefits</h2>
+      <p class="benefits-subtitle fade-up">Every bowl is packed with what your morning actually needs.</p>
+      <div class="benefits-grid">
+        <div class="benefit-card fade-up">
+          <div class="benefit-image-wrap">
+            <img src="https://images.pexels.com/photos/13950821/pexels-photo-13950821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Close-up of cooked oats with a scoop of protein powder being stirred in, creamy texture, warm lighting" width="100" height="100" class="benefit-image">
+          </div>
+          <h3 class="benefit-title">High Protein</h3>
+          <p class="benefit-desc">20g of complete protein to keep you full and fueled until lunch.</p>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-image-wrap">
+            <img src="https://images.pexels.com/photos/19130868/pexels-photo-19130868.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Oatmeal bowl topped with chia seeds, flax seeds, and fresh berries, overhead shot on marble counter" width="100" height="100" class="benefit-image">
+          </div>
+          <h3 class="benefit-title">High Fiber</h3>
+          <p class="benefit-desc">8g of fiber per serving for happy digestion and steady energy.</p>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-image-wrap">
+            <img src="https://images.pexels.com/photos/19130868/pexels-photo-19130868.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fresh fruit and oats arranged neatly with no added sugar visible, clean minimalist styling, bright natural light" width="100" height="100" class="benefit-image">
+          </div>
+          <h3 class="benefit-title">Low Sugar</h3>
+          <p class="benefit-desc">Only 3g of sugar. Sweetened naturally with monk fruit.</p>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-image-wrap">
+            <img src="https://images.pexels.com/photos/13950819/pexels-photo-13950819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Rustic wooden bowl filled with raw rolled oats, cinnamon sticks, and vanilla pods, warm overhead shot" width="100" height="100" class="benefit-image">
+          </div>
+          <h3 class="benefit-title">Quality Ingredients</h3>
+          <p class="benefit-desc">Non-GMO, gluten-free, and nothing you can't pronounce.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cooking Instructions Section -->
+  <section class="cooking section" id="cooking">
+    <div class="container">
+      <h2 class="section-heading cooking-heading fade-up">Cooking Instructions</h2>
+      <div class="cooking-inner">
+        <div class="cooking-col fade-up">
+          <h3 class="cooking-col-title">Microwave</h3>
+          <div class="cooking-steps">
+            <div class="cooking-step">
+              <div class="cooking-step-num">01</div>
+              <div class="cooking-step-text">
+                <h4>Add to Bowl</h4>
+                <p>Empty one packet into a microwave-safe bowl.</p>
+              </div>
+            </div>
+            <div class="cooking-step">
+              <div class="cooking-step-num">02</div>
+              <div class="cooking-step-text">
+                <h4>Add Liquid</h4>
+                <p>Pour in 2/3 cup of water or your favorite milk.</p>
+              </div>
+            </div>
+            <div class="cooking-step">
+              <div class="cooking-step-num">03</div>
+              <div class="cooking-step-text">
+                <h4>Heat &amp; Stir</h4>
+                <p>Microwave for 60-90 seconds, then stir well.</p>
+              </div>
+            </div>
+            <div class="cooking-step">
+              <div class="cooking-step-num">04</div>
+              <div class="cooking-step-text">
+                <h4>Enjoy</h4>
+                <p>Add your favorite toppings and dig in.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cooking-center fade-up">
+          <img src="https://images.pexels.com/photos/343871/pexels-photo-343871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Steaming hot oatmeal bowl with maple syrup drizzle and walnuts, side angle on a light wood table, soft warm morning light with steam rising" width="260" height="260" class="cooking-center-image">
+        </div>
+        <div class="cooking-col fade-up">
+          <h3 class="cooking-col-title">Stovetop</h3>
+          <div class="cooking-steps">
+            <div class="cooking-step">
+              <div class="cooking-step-num">01</div>
+              <div class="cooking-step-text">
+                <h4>Combine</h4>
+                <p>Mix packet contents with 2/3 cup water in a small pot.</p>
+              </div>
+            </div>
+            <div class="cooking-step">
+              <div class="cooking-step-num">02</div>
+              <div class="cooking-step-text">
+                <h4>Bring to Boil</h4>
+                <p>Heat over medium-high, stirring occasionally.</p>
+              </div>
+            </div>
+            <div class="cooking-step">
+              <div class="cooking-step-num">03</div>
+              <div class="cooking-step-text">
+                <h4>Simmer</h4>
+                <p>Reduce heat and simmer for 2-3 minutes until creamy.</p>
+              </div>
+            </div>
+            <div class="cooking-step">
+              <div class="cooking-step-num">04</div>
+              <div class="cooking-step-text">
+                <h4>Serve</h4>
+                <p>Transfer to a bowl, add toppings, and enjoy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredients Section -->
+  <section class="ingredients section" id="ingredients">
+    <div class="container">
+      <h2 class="section-heading ingredients-heading fade-up">High Quality Ingredients</h2>
+      <p class="ingredients-subtitle fade-up">We believe breakfast should be simple, clean, and delicious.</p>
+      <div class="ingredients-diagram fade-up">
+        <div class="ingredients-center">
+          <img src="https://images.pexels.com/photos/37309469/pexels-photo-37309469.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Overhead shot of a rustic bowl filled with raw rolled oats surrounded by small dishes of cinnamon, seeds, and maple syrup, natural wood table, warm light" width="280" height="280" class="ingredients-center-image">
+        </div>
+        <div class="ingredient-node node-top">
+          <img src="https://images.pexels.com/photos/13950819/pexels-photo-13950819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Close-up of raw rolled oats in a wooden scoop, texture detail, natural light" width="80" height="80" class="ingredient-node-image">
+          <span class="ingredient-node-label">Oats</span>
+        </div>
+        <div class="ingredient-node node-bottom">
+          <img src="https://images.pexels.com/photos/29039080/pexels-photo-29039080.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cinnamon sticks and ground cinnamon powder in a small ceramic dish, warm tones" width="80" height="80" class="ingredient-node-image">
+          <span class="ingredient-node-label">Cinnamon</span>
+        </div>
+        <div class="ingredient-node node-left">
+          <img src="https://images.pexels.com/photos/34270746/pexels-photo-34270746.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mixed chia and flax seeds in a glass jar, natural light" width="80" height="80" class="ingredient-node-image">
+          <span class="ingredient-node-label">Seeds</span>
+        </div>
+        <div class="ingredient-node node-right">
+          <img src="https://images.pexels.com/photos/36183642/pexels-photo-36183642.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Small glass bottle of oat milk on a white surface, clean minimalist styling" width="80" height="80" class="ingredient-node-image">
+          <span class="ingredient-node-label">Milk</span>
+        </div>
+        <div class="ingredient-node node-tl">
+          <img src="https://images.pexels.com/photos/5506215/pexels-photo-5506215.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Scoop of vanilla protein powder on a clean white surface, fine texture visible" width="80" height="80" class="ingredient-node-image">
+          <span class="ingredient-node-label">Protein</span>
+        </div>
+        <div class="ingredient-node node-tr">
+          <img src="https://images.pexels.com/photos/29619503/pexels-photo-29619503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dried monk fruit and a small bowl of monk fruit sweetener powder, natural styling" width="80" height="80" class="ingredient-node-image">
+          <span class="ingredient-node-label">Natural Sweetener</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flavors Section -->
+  <section class="flavors section" id="flavors">
+    <div class="container">
+      <h2 class="section-heading flavors-heading fade-up">Three Delicious Flavors</h2>
+      <div class="flavors-grid">
+        <div class="flavor-card fade-up">
+          <img src="https://images.pexels.com/photos/21802643/pexels-photo-21802643.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Warm maple brown sugar oatmeal in a white bowl topped with caramelized banana slices and a drizzle of maple syrup, overhead shot" width="180" height="180" class="flavor-image">
+          <h3 class="flavor-name">Maple Brown Sugar</h3>
+          <p class="flavor-desc">Classic comfort with real maple and a hint of caramelized sugar.</p>
+          <a href="#flavors" class="flavor-cta" data-flavor-shop>Shop Now →</a>
+        </div>
+        <div class="flavor-card fade-up">
+          <img src="https://images.pexels.com/photos/17975557/pexels-photo-17975557.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Apple cinnamon oatmeal with diced red apples and a cinnamon stick garnish, warm overhead shot on cream ceramic" width="180" height="180" class="flavor-image">
+          <h3 class="flavor-name">Apple Cinnamon</h3>
+          <p class="flavor-desc">Tart apple pieces meet cozy cinnamon spice in every bite.</p>
+          <a href="#flavors" class="flavor-cta" data-flavor-shop>Shop Now →</a>
+        </div>
+        <div class="flavor-card fade-up">
+          <img src="https://images.pexels.com/photos/29956305/pexels-photo-29956305.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Banana bread oatmeal topped with walnut pieces and sliced banana, rich golden brown color, overhead shot" width="180" height="180" class="flavor-image">
+          <h3 class="flavor-name">Banana Bread</h3>
+          <p class="flavor-desc">All the comfort of fresh-baked banana bread, no oven required.</p>
+          <a href="#flavors" class="flavor-cta" data-flavor-shop>Shop Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="comparison section" id="comparison">
+    <div class="container">
+      <h2 class="section-heading comparison-heading fade-up">Us vs. Them</h2>
+      <p class="comparison-subtitle fade-up">How do we stack up to the "classics"?</p>
+      <div class="comparison-table-wrap fade-up">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th style="width:30%"></th>
+              <th class="brand-col">Breakfast Boost</th>
+              <th class="other-col">Traditional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Protein</td>
+              <td class="brand-cell">20g</td>
+              <td>3-5g</td>
+            </tr>
+            <tr>
+              <td class="row-label">Fiber</td>
+              <td class="brand-cell">8g</td>
+              <td>2-3g</td>
+            </tr>
+            <tr>
+              <td class="row-label">Sugar</td>
+              <td class="brand-cell">3g</td>
+              <td>12-18g</td>
+            </tr>
+            <tr>
+              <td class="row-label">Clean Ingredients</td>
+              <td class="brand-cell">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </td>
+              <td>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label">Gluten Free</td>
+              <td class="brand-cell">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </td>
+              <td>
+                <svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label">Calories</td>
+              <td class="brand-cell">240</td>
+              <td>160-200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Mobile comparison cards -->
+      <div class="comparison-cards fade-up">
+        <div class="comparison-card">
+          <div class="comparison-card-title" style="color:var(--purple);">Breakfast Boost</div>
+          <div class="comparison-card-row"><span>Protein</span><strong>20g</strong></div>
+          <div class="comparison-card-row"><span>Fiber</span><strong>8g</strong></div>
+          <div class="comparison-card-row"><span>Sugar</span><strong>3g</strong></div>
+          <div class="comparison-card-row"><span>Clean Ingredients</span><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="comparison-card-row"><span>Gluten Free</span><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="comparison-card-row"><span>Calories</span><strong>240</strong></div>
+        </div>
+        <div class="comparison-card">
+          <div class="comparison-card-title" style="color:var(--gray-mid);">Traditional</div>
+          <div class="comparison-card-row"><span>Protein</span><span>3-5g</span></div>
+          <div class="comparison-card-row"><span>Fiber</span><span>2-3g</span></div>
+          <div class="comparison-card-row"><span>Sugar</span><span>12-18g</span></div>
+          <div class="comparison-card-row"><span>Clean Ingredients</span><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <div class="comparison-card-row"><span>Gluten Free</span><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <div class="comparison-card-row"><span>Calories</span><span>160-200</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscription CTA Section -->
+  <section class="subscribe section" id="subscribe">
+    <div class="subscribe-inner">
+      <div class="subscribe-image-area">
+        <img src="https://images.pexels.com/photos/6205536/pexels-photo-6205536.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Young woman enjoying a bright breakfast at a sunlit kitchen counter with a colorful bowl of oatmeal, plants in background, warm lifestyle photography" width="800" height="600" class="subscribe-image" loading="lazy">
+        <div class="subscribe-image-decor"></div>
+      </div>
+      <div class="subscribe-content fade-up">
+        <h2 class="display-heading subscribe-heading">Subscribe to Simplify<br>Your Routine</h2>
+        <p class="subscribe-desc">Never miss a morning. Get your favorite flavors delivered on your schedule, and save every time.</p>
+        <div class="subscribe-list">
+          <div class="subscribe-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Save 15% on every order
+          </div>
+          <div class="subscribe-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Convenient doorstep delivery
+          </div>
+          <div class="subscribe-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Never run out again
+          </div>
+          <div class="subscribe-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Easy breakfast, every day
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Thanks for your interest! Subscription signup would open here.');">Start Your Routine</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews section" id="reviews">
+    <div class="container">
+      <h2 class="section-heading reviews-heading fade-up">What Customers Are Saying</h2>
+      <div class="reviews-rating fade-up">
+        <div class="reviews-rating-num">4.3</div>
+        <div class="reviews-rating-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+      </div>
+      <div class="reviews-carousel">
+        <div class="reviews-track" id="reviewsTrack">
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4 class="review-title">My New Favorite Breakfast</h4>
+            <p class="review-text">I used to skip breakfast every day. Now I actually look forward to my morning bowl. The maple flavor is incredible.</p>
+            <div class="review-author">Sarah M.</div>
+            <div class="review-flavor">Maple Brown Sugar</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4 class="review-title">Really Good!</h4>
+            <p class="review-text">The texture is perfect — creamy without being mushy. And I love that it's not overly sweet like other brands.</p>
+            <div class="review-author">James K.</div>
+            <div class="review-flavor">Apple Cinnamon</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4 class="review-title">Maple Brown Sugar Is Amazing</h4>
+            <p class="review-text">I've tried a lot of instant oatmeals and this is by far the best. The protein keeps me full until lunch.</p>
+            <div class="review-author">Priya R.</div>
+            <div class="review-flavor">Maple Brown Sugar</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4 class="review-title">So Easy</h4>
+            <p class="review-text">My kids can make it themselves. That alone is worth every penny. Plus they actually eat it without complaints.</p>
+            <div class="review-author">Amanda T.</div>
+            <div class="review-flavor">Banana Bread</div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h4 class="review-title">Game Changer</h4>
+            <p class="review-text">As someone who tracks macros, this fits perfectly into my day. Clean ingredients and great macros.</p>
+            <div class="review-author">David L.</div>
+            <div class="review-flavor">Maple Brown Sugar</div>
+          </div>
+
+          <div class="review-card extra-review hidden-review">
+            <div class="review-stars">★★★★★</div>
+            <h4 class="review-title">Easy Morning Win</h4>
+            <p class="review-text">Fast, cozy, and easy to fit into a busy morning routine.</p>
+            <div class="review-author">Maya R.</div>
+            <div class="review-flavor">Apple Cinnamon</div>
+          </div>
+          <div class="review-card extra-review hidden-review">
+            <div class="review-stars">★★★★★</div>
+            <h4 class="review-title">Tastes Like Home</h4>
+            <p class="review-text">The banana bread flavor is my favorite. It feels like a weekend breakfast in minutes.</p>
+            <div class="review-author">Chris T.</div>
+            <div class="review-flavor">Banana Bread</div>
+          </div>
+          <div class="review-card extra-review hidden-review">
+            <div class="review-stars">★★★★★</div>
+            <h4 class="review-title">Actually Filling</h4>
+            <p class="review-text">I like that it is simple to prepare and keeps me going through the morning.</p>
+            <div class="review-author">Jordan K.</div>
+            <div class="review-flavor">Maple Brown Sugar</div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-nav">
+        <button id="reviewsPrev" aria-label="Previous reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button id="reviewsNext" aria-label="Next reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="reviews-read-more">
+        <button type="button" class="btn btn-secondary" id="readMoreReviews">Read More Reviews</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Frontend-only Product Modal -->
+  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalProductName">
+    <div class="product-modal-card">
+      <button class="product-modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="retro-label">BREAKFAST BOOST // ORDER TERMINAL</div>
+      <h3 id="modalProductName">Maple Brown Sugar</h3>
+      <p id="modalProductDesc">Choose your quantity and add it to your demo cart.</p>
+      <div class="product-modal-price">$12.00 / box</div>
+      <div class="quantity-row">
+        <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+        <span id="qtyValue">1</span>
+        <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+      </div>
+      <button type="button" class="btn btn-primary" id="addToCart" style="width:100%;">Add To Demo Cart</button>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- FAQ Section -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <h2 class="section-heading faq-heading fade-up">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            What ingredients are used?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>We use certified gluten-free rolled oats, whey protein isolate, natural flavors, monk fruit extract, and a touch of sea salt. No artificial colors, preservatives, or high-fructose corn syrup. Every ingredient is non-GMO and sourced from trusted suppliers.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What is the nutritional information?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Each serving contains 240 calories, 20g protein, 8g fiber, 3g sugar, 6g fat, and 38g carbohydrates. It's designed to provide sustained energy and keep you satisfied through your morning.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            How should I prepare it?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Simply add hot water or milk, stir, and let sit for 2 minutes. You can also microwave for 60-90 seconds. Check our Cooking Instructions section above for detailed stovetop and microwave directions.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            How much protein does it contain?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Every packet delivers 20 grams of high-quality complete protein from whey protein isolate. That's more than a typical protein bar — and it actually tastes like breakfast.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Is it suitable for different diets?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Our oatmeal is gluten-free and vegetarian-friendly. It is not vegan due to whey protein. If you have specific allergies, please check the full ingredient list on the packaging.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Where can I buy it?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>You can purchase directly from our website with fast shipping across the US. We also partner with select specialty grocers — check our store locator for a retailer near you.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            How does the subscription work?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Choose your flavors and delivery frequency — weekly, bi-weekly, or monthly. Save 15% on every order, skip or pause anytime, and cancel with no fees. We'll remind you before each shipment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="footer-logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            Breakfast Boost
+          </div>
+          <p class="footer-desc">Making mornings better, one bowl at a time. Clean ingredients, bold flavors, and the protein your body needs.</p>
+        </div>
+        <div>
+          <h4 class="footer-links-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="#flavors">Shop</a>
+            <a href="#ingredients">About</a>
+            <a href="#cooking">Recipes</a>
+            <a href="#faq">FAQ</a>
+            <a href="#footer-newsletter" id="contactLink">Contact</a>
+          </div>
+        </div>
+        <div class="footer-newsletter" id="footer-newsletter">
+          <h4 class="footer-newsletter-title">Join the Club</h4>
+          <p class="footer-newsletter-desc">Get recipes, early access to new flavors, and exclusive offers.</p>
+          <form class="footer-form" id="newsletterForm">
+            <input type="email" class="footer-input" placeholder="Your email" required>
+            <button type="submit" class="footer-submit">Join</button>
+          </form>
+          <div class="footer-socials">
+            <a href="#" class="footer-social" aria-label="Instagram" data-social="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social" aria-label="Twitter" data-social="Twitter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" class="footer-social" aria-label="TikTok" data-social="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Breakfast Boost. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#" data-legal="Privacy Policy">Privacy Policy</a>
+          <a href="#" data-legal="Terms of Service">Terms of Service</a>
+          <a href="#" data-legal="Accessibility">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================
+    // Sticky Navbar Shadow
+    // ============================================
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ============================================
+    // Mobile Navigation
+    // ============================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    function toggleMobileNav() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      mobileOverlay.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMobileNav);
+    mobileOverlay.addEventListener('click', toggleMobileNav);
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggleMobileNav();
+      });
+    });
+
+    // ============================================
+    // Scroll-triggered fade-up animations
+    // ============================================
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // ============================================
+    // Reviews Carousel
+    // ============================================
+    const track = document.getElementById('reviewsTrack');
+    const prevBtn = document.getElementById('reviewsPrev');
+    const nextBtn = document.getElementById('reviewsNext');
+    let reviewsIndex = 0;
+
+    function getCardsPerView() {
+      if (window.innerWidth <= 768) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    }
+
+    function updateCarousel() {
+      const visibleCards = Array.from(track.children).filter(card => getComputedStyle(card).display !== 'none');
+      if (!visibleCards.length) return;
+      const cardWidth = visibleCards[0].offsetWidth + 24;
+      const cardsPerView = Math.min(getCardsPerView(), visibleCards.length);
+      const maxIndex = Math.max(0, visibleCards.length - cardsPerView);
+      reviewsIndex = Math.max(0, Math.min(reviewsIndex, maxIndex));
+      track.style.transform = `translateX(-${reviewsIndex * cardWidth}px)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      reviewsIndex = Math.max(0, reviewsIndex - 1);
+      updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const visibleCards = Array.from(track.children).filter(card => getComputedStyle(card).display !== 'none');
+      const maxIndex = Math.max(0, visibleCards.length - Math.min(getCardsPerView(), visibleCards.length));
+      reviewsIndex = Math.min(maxIndex, reviewsIndex + 1);
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+
+    // ============================================
+    // FAQ Accordion
+    // ============================================
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        // Uncomment below to allow only one open at a time
+        // faqItems.forEach(i => i.classList.remove('open'));
+        item.classList.toggle('open', !isOpen);
+      });
+    });
+
+    // ============================================
+    // Frontend-only product interaction
+    // ============================================
+    const productModal = document.getElementById('productModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalProductName = document.getElementById('modalProductName');
+    const modalProductDesc = document.getElementById('modalProductDesc');
+    const qtyValue = document.getElementById('qtyValue');
+    const qtyMinus = document.getElementById('qtyMinus');
+    const qtyPlus = document.getElementById('qtyPlus');
+    const addToCart = document.getElementById('addToCart');
+    const cartCount = document.getElementById('cartCount');
+    const toast = document.getElementById('toast');
+    let selectedFlavor = 'Maple Brown Sugar';
+    let quantity = 1;
+    let cartItems = 0;
+
+    const flavorDescriptions = {
+      'Maple Brown Sugar': 'Classic comfort with real maple and a hint of caramelized sugar.',
+      'Apple Cinnamon': 'Tart apple pieces meet cozy cinnamon spice in every bite.',
+      'Banana Bread': 'All the comfort of fresh-baked banana bread, no oven required.'
+    };
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    function openProductModal(flavor = 'Maple Brown Sugar') {
+      selectedFlavor = flavor;
+      quantity = 1;
+      qtyValue.textContent = quantity;
+      modalProductName.textContent = selectedFlavor;
+      modalProductDesc.textContent = flavorDescriptions[selectedFlavor] || 'A delicious Breakfast Boost flavor.';
+      productModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+      productModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-shop]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.preventDefault();
+        openProductModal('Maple Brown Sugar');
+      });
+    });
+
+    document.querySelectorAll('[data-flavor-shop]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const card = link.closest('.flavor-card');
+        const flavor = card ? card.querySelector('.flavor-name').textContent.trim() : 'Maple Brown Sugar';
+        openProductModal(flavor);
+      });
+    });
+
+    document.querySelectorAll('[data-subscribe]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        document.getElementById('subscribe').scrollIntoView({ behavior: 'smooth' });
+        showToast('SUBSCRIBE MODE // Choose your routine below');
+      });
+    });
+
+    modalClose.addEventListener('click', closeProductModal);
+    productModal.addEventListener('click', event => {
+      if (event.target === productModal) closeProductModal();
+    });
+
+    qtyMinus.addEventListener('click', () => {
+      quantity = Math.max(1, quantity - 1);
+      qtyValue.textContent = quantity;
+    });
+
+    qtyPlus.addEventListener('click', () => {
+      quantity = Math.min(20, quantity + 1);
+      qtyValue.textContent = quantity;
+    });
+
+    addToCart.addEventListener('click', () => {
+      cartItems += quantity;
+      if (cartCount) cartCount.textContent = cartItems;
+      closeProductModal();
+      showToast(`${quantity} × ${selectedFlavor} added to demo cart`);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && productModal.classList.contains('open')) {
+        closeProductModal();
+      }
+    });
+
+    // ============================================
+    // Review "Read More" interaction
+    // ============================================
+    const readMoreReviews = document.getElementById('readMoreReviews');
+    if (readMoreReviews) {
+      readMoreReviews.addEventListener('click', () => {
+        const hiddenReviews = document.querySelectorAll('.extra-review');
+        hiddenReviews.forEach(card => card.classList.toggle('hidden-review'));
+        const isHidden = hiddenReviews.length && hiddenReviews[0].classList.contains('hidden-review');
+        readMoreReviews.textContent = isHidden ? 'Read More Reviews' : 'Show Fewer Reviews';
+        updateCarousel();
+      });
+    }
+
+    // ============================================
+    // Newsletter
+    // ============================================
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const input = newsletterForm.querySelector('.footer-input');
+        if (!input.value.trim()) return;
+        newsletterForm.querySelector('.footer-submit').textContent = 'Joined!';
+        input.value = '';
+        showToast('WELCOME TO THE BREAKFAST BOOST CLUB');
+      });
+    }
+
+    // ============================================
+    // Footer / social / legal links
+    // ============================================
+    document.querySelectorAll('[data-social]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showToast(`${link.dataset.social.toUpperCase()} // Social link is frontend-only`);
+      });
+    });
+
+    document.querySelectorAll('[data-legal]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showToast(`${link.dataset.legal.toUpperCase()} // Demo page`);
+      });
+    });
+
+    const contactLink = document.getElementById('contactLink');
+    if (contactLink) {
+      contactLink.addEventListener('click', event => {
+        event.preventDefault();
+        document.getElementById('footer-newsletter').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => document.querySelector('.footer-input')?.focus(), 500);
+      });
+    }
+
+  </script>
+
+</body>
+</html>
